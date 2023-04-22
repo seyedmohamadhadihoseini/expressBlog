@@ -1,0 +1,33 @@
+<h2>ایجاد مطلب جدید</h2>
+<form id="new_post_form" action="/admin/posts/{{#if type}}{{type}}{{else}}store{{/if}}" method="post">
+    {{#if HasError}}
+    <ol>
+        {{#each errors}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
+    {{/if}}
+    <input type="text"  name="title" id="title" placeholder="عنوان مطلب" value="{{formData.title}}">
+    <input type="text"  name="slug" id="slug" placeholder="نامک مطلب" value="{{formData.slug}}">
+    <textarea name="content"  id="content" placeholder="محتوای مطلب" cols="30" rows="10">{{formData.content}}</textarea>
+<hr>
+    <label for="pet-select">نویسنده:</label>
+    <select name="author" id="pet-select" style="display: block;">
+        {{#each authors}}
+        <option value={{this.id}} {{#if (eq this.id ../selectedId)}}selected{{/if}}>{{this.fullName}}</option>
+        {{/each}}
+    </select>
+    <hr>
+    
+    <p>وضعیت مطلب</p>
+    <label for="draft">پیش نویس</label>
+    <input type="radio" id="draft" name="status"  value=0 {{#if (eq formData.status 0)}}checked{{/if}}>
+    <label for="pending">در انتظار بررسی</label>
+    <input type="radio" id="pending" name="status" value=1 {{#if (eq formData.status 1)}}checked{{/if}}>
+    <label for="published">منتشر شده</label>
+    <input type="radio" id="published" name="status" value=2 {{#if (eq formData.status 2)}}checked{{/if}}>
+    
+    <button type="submit" class="button button-primary" style="display: block;width:15%;">
+    ذخیره
+    </button>
+</form>

@@ -1,0 +1,52 @@
+<div class="box">
+    <div class="box-head">
+        <h4 class="title">مدیریت کامنت ها</h4>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table table-vertical-middle">
+                <thead>
+                    <tr>
+                        <th>شناسه</th>
+                        {{!-- <th>نویسنده</th> --}}
+                        <th>عنوان پست</th>
+                        <th>اسم کاربر</th>
+                        <th>ایمیل کاربر</th>
+                        <th>لینک کاربر</th>
+                        <th>متن</th>
+                        <th>تاریخ ایجاد</th>
+                        <th>وضعیت</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each comments}}
+                    <tr>
+                        <td>{{this.id}}</td>
+                        {{!-- <td><img src="assets/images/product/list-product-1.jpg" alt=""
+                                class="product-image rounded-circle"></td> --}}
+                        {{!-- <td>{{this.author_id}}</td> --}}
+                        <td><a href="#">{{this.post_title}}</a></td>
+                        <td>{{this.user_name}}</td>
+                        <td>{{this.user_email}}</td>
+                        <td>{{this.user_url}}</td>
+                        <td>{{this.comment}}</td>
+                        <td>{{this.created_at_persian}}</td>
+                        <td>{{this.status}}</td>
+                        <td>
+                            <div class="table-action-buttons">
+                                <a class="view button button-box button-xs button-primary"
+                                    href="invoice-details.html"><i class="zmdi zmdi-more"></i></a>
+                                <a class="edit button button-box button-xs button-info" href="#"><i
+                                        class="zmdi zmdi-edit"></i></a>
+                                <a class="delete button button-box button-xs button-danger" href="/admin/comments/remove/{{this.id}}"><i
+                                        class="zmdi zmdi-delete"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
