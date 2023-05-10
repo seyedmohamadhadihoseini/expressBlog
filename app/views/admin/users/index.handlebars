@@ -1,0 +1,62 @@
+<!-- Recent Transaction Start -->
+<div class="col-12 mb-30">
+    <div class="box">
+        <div class="box-head has-operation">
+            <h4 class="title">لیست مطلب</h4>
+            <br>
+            <div class="operations">
+                <a href="/admin/users/new_user" class="button button-primary">
+                    <span>
+                        <i class="zmdi zmdi-plus"></i>
+                        تعریف کاربر جدید
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            
+            <div class="table-responsive">
+                <table class="table table-vertical-middle table-selectable">
+
+                    <!-- Table Head Start -->
+                    <thead>
+                        <tr>
+                            
+                            <th><span>#</span></th>
+                            <th><span>نام</span></th>
+                            <th><span>ایمیل</span></th>
+                            <th><span>رمز عبور</span></th>
+                            <th><span>تاریخ ساخت</span></th>
+                            <th><span>وضعیت</span></th>
+                            <th></th>
+                        </tr>
+                    </thead><!-- Table Head End -->
+
+                    <!-- Table Body Start -->
+                    <tbody>
+                        {{#each users}}
+                        <tr>
+                            
+                            <td>{{this.id}}</td>
+                            <td><a href="#">{{this.fullName}}</a></td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.password}}</td>
+                            <td>{{this.created_at}}</td>
+                            <td>{{this.role}}</td>
+                            <td>
+                                <a href="/admin/users/edit_user?userid={{this.id}}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="/admin/users/remove?userId={{this.id}}" name="removeuserIcon">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody><!-- Table Body End -->
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div><!-- Recent Transaction End -->

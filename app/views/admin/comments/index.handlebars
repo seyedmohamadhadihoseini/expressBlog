@@ -32,11 +32,15 @@
                         <td>{{this.user_url}}</td>
                         <td>{{this.comment}}</td>
                         <td>{{this.created_at_persian}}</td>
-                        <td>{{this.status}}</td>
+                        <td>{{this.persianStatus}}</td>
                         <td>
-                            <div class="table-action-buttons">
-                                <a class="view button button-box button-xs button-primary"
-                                    href="invoice-details.html"><i class="zmdi zmdi-more"></i></a>
+                            <div class="table-action-buttons comment-menu-container">
+                                <a class="comment-item view button button-box button-xs button-primary"
+                                    href=""><i class="zmdi zmdi-more"></i></a>
+                                    <ul class="comment-menu">
+                                        <li><a class="button-box" href="/admin/comments/reject?commentId={{this.id}}">Reject</a></li>
+                                        <li><a href="/admin/comments/accept?commentId={{this.id}}">Accept</a></li>
+                                    </ul>
                                 <a class="edit button button-box button-xs button-info" href="#"><i
                                         class="zmdi zmdi-edit"></i></a>
                                 <a class="delete button button-box button-xs button-danger" href="/admin/comments/remove/{{this.id}}"><i
@@ -50,3 +54,4 @@
         </div>
     </div>
 </div>
+<script src="/static/assets/js/comment.js"></script>

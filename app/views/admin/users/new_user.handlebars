@@ -1,0 +1,26 @@
+<h2>تعریف کاربر جدید</h2>
+<form id="new_post_form" action="/admin/posts/{{#if type}}{{type}}{{else}}store{{/if}}" method="post">
+    {{#if HasError}}
+    <ol>
+        {{#each errors}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
+    {{/if}}
+    <input type="text"  name="title" id="title" required placeholder="اسم" value="{{formData.fullName}}">
+    <input type="email"  name="email" id="email"  required placeholder="ایمیل" value="{{formData.email}}">
+    <input type="password"  name="password" id="slug"  required  placeholder="رمز عبور" value="{{formData.password}}">
+    
+<hr>
+    <select name="userRole" id="pet-select" style="display: block;">
+        {{#each roles}}
+        <option value={{this}} {{#if (eq this.id)}}selected{{/if}}>{{this}}</option>
+        {{/each}}
+    </select>
+    <hr>
+    
+
+    <button type="submit" class="button button-primary" style="display: block;width:15%;">
+    ذخیره
+    </button>
+</form>

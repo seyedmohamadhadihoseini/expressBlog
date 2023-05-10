@@ -2,7 +2,8 @@ const postModel = require("@models/posts");
 const Postpresent = require("@presentation/posts");
 const postEntites = require("@entities/Post");
 const userModels = require("@models/users");
-const postValidation = require("@validation/newPost")
+const postValidation = require("@validation/newPost");
+const postStatus=require("@models/posts/status");
 exports.index = async (req, res) => {
 
     const posts = await postModel.findAll();
@@ -21,7 +22,8 @@ exports.newPost = async (req, res) => {
     const formData = req.session.createPostFormData||{};
     const kerrors = req.session.kerrors||{};
     res.render("admin/posts/new_post", {
-        layout: "admin", authors, HasError: kerrors.length > 0, errors:kerrors, formData
+        layout: "admin", authors, HasError: kerrors.length > 0, errors:kerrors, formData,
+        postStatus: postStatus.status, persianStatus: postEntites.persianStatus
     })
     delete req.session.kerrors;
     delete req.session.createPostFormData;
@@ -56,7 +58,13 @@ exports.editPost=async(req,res)=>{
 
     const authors = await userModels.findUsers(['fullName', 'id']);
     res.render("admin/posts/new_post", {
-        layout: "admin", authors,  selectedId: result.author_id,formData:result,type:"edit_post"
+        layout: "admin", authors,  selectedId: result.author_id,formData:result,type:"edit_post",
+        postStatus:postStatus.status,persianStatus:postEntites.persianStatus,
+        helpers:{
+            isPostAuthor:function(userId,options){
+                return userId===result.author_id;
+            }
+        }
     });
     req.session.postId=postId;
 }

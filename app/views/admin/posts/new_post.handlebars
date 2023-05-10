@@ -14,18 +14,18 @@
     <label for="pet-select">نویسنده:</label>
     <select name="author" id="pet-select" style="display: block;">
         {{#each authors}}
-        <option value={{this.id}} {{#if (eq this.id ../selectedId)}}selected{{/if}}>{{this.fullName}}</option>
+        <option value={{this.id}} {{#if (eq this.id)}}selected{{/if}}>{{this.fullName}}</option>
         {{/each}}
     </select>
     <hr>
     
     <p>وضعیت مطلب</p>
-    <label for="draft">پیش نویس</label>
-    <input type="radio" id="draft" name="status"  value=0 {{#if (eq formData.status 0)}}checked{{/if}}>
+    <label for="draft">"پیش نویس"</label>
+    <input type="radio" id="draft" name="status"  value={{postStatus.DRAFT}} {{#if (eq formData.status 0)}}checked{{/if}}>
     <label for="pending">در انتظار بررسی</label>
-    <input type="radio" id="pending" name="status" value=1 {{#if (eq formData.status 1)}}checked{{/if}}>
+    <input type="radio" id="pending" name="status" value={{postStatus.REVIEW}} {{#if (eq formData.status 1)}}checked{{/if}}>
     <label for="published">منتشر شده</label>
-    <input type="radio" id="published" name="status" value=2 {{#if (eq formData.status 2)}}checked{{/if}}>
+    <input type="radio" id="published" name="status" value={{postStatus.PUBLISHED}} {{#if (eq formData.status 2)}}checked{{/if}}>
     
     <button type="submit" class="button button-primary" style="display: block;width:15%;">
     ذخیره

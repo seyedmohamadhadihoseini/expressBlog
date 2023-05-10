@@ -28,3 +28,7 @@ exports.update=async(id,post)=>{
     const [result]=await db.query(`update posts set ? where id=?`,[post,id]);
     return result;
 }
+exports.set_status=async(status,id)=>{
+    const [result]=await db.query("update comments set status=? where id=? limit 1",[status,id]);
+    return result.affectedRows==1;
+}

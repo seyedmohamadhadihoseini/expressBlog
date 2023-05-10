@@ -20,6 +20,7 @@
     "@entities": "app/entities",
     "@database": "./database",
     "@validation": "app/validation",
+    "@middlewares":"app/middlewares",
     "adminControllers": "app/controllers/admin"
   },
   "dependencies": {

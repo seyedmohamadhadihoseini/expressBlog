@@ -11,3 +11,8 @@ exports.findOne=async(id)=>{
     const [result]=await db.query("select * from users where id=? limit 1",[id]);
     return result[0];
 }
+exports.removeuser=async(id)=>{
+    const [result] = await db.query("delete from users where id=? limit 1", [id]);
+    console.log(result[0])
+    return result[0];
+}
