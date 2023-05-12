@@ -1,4 +1,7 @@
 const userModel = require("@models/users");
+const userStatus = require("@models/users/status");
+const userValidation=require("@validation/newUser");
+const userEntites=require("@entities/User");
 exports.index = async (req, res) => {
     const users = await userModel.findUsers();
     res.render("admin/users/", {
@@ -9,26 +12,26 @@ exports.newuser = async (req, res) => {
 
     const formData = req.session.createuserFormData||{};
     const kerrors = req.session.kerrors||{};
-    let roles=[]
+    let roles=['کاربری','نویسنده','مدیر'];
     res.render("admin/users/new_user", {
-        layout: "admin", HasError: kerrors.length > 0, errors:kerrors, formData,
+        layout: "admin", HasError: kerrors.length > 0, errors:kerrors, formData,roles
     })
     delete req.session.kerrors;
     delete req.session.createuserFormData;
 }
 exports.SaveNewuser = async (req, res) => {
 
-    errMsg = userValidation.validate(req.body.title, req.body.slug, req.body.content);
+    errMsg = userValidation.validate(req.body.fullname, req.body.email, req.body.password);
     if (errMsg.length > 0) {
         req.session.createuserFormData = { ...req.body };
         req.session.kerrors = errMsg;
         res.redirect("/admin/users/new_user");
         return;
     }
-    user = new userEntites(req.body.author, req.body.title, req.body.slug, req.body.content, req.body.status, 1);
+    user = new userEntites(req.body.fullname, req.body.email, req.body.password,userStatus.toNumber(req.body.userRole));
     await userModel.SaveNewuser(user);
-    this.index(req, res);
-
+ 
+    res.redirect("/admin/users/");
 
 }
 exports.removeuser = async (req, res) => {

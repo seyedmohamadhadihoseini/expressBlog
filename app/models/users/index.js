@@ -1,5 +1,5 @@
 const db = require("@database/mysql");
-
+const bcryptService=require("@services/bcryptService");
 exports.findUsers=async (columns = [],condition=[])=>
 {
     sqlcolumns=columns.length>0 ? columns.join(','):'*';
@@ -13,6 +13,12 @@ exports.findOne=async(id)=>{
 }
 exports.removeuser=async(id)=>{
     const [result] = await db.query("delete from users where id=? limit 1", [id]);
-    console.log(result[0])
-    return result[0];
+    console.log(result)
+    return true;
+}
+exports.SaveNewuser=async(user)=>{
+    const hashedPassword=bcryptService.hash(user.password);
+    const changedUser={...user,password:hashedPassword};
+    const [result]=await db.query(`insert into users set ?`,[changedUser]);
+    return true;
 }

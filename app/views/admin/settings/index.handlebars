@@ -1,0 +1,30 @@
+<form action="/admin/settings" id="settings-form" method="post">
+    <h3>تنظیمات</h3>
+    <div class="all-settings">
+        <div class="item-settings">
+            <h4>عمومی</h4>
+            <input type="text" name="website-title" placeholder="عنوان وب سایت" id="" value="{{configs.website-title}}">
+            <textarea name="website-description" id="" placeholder="توضیحات وبسایت" cols="30" rows="10">{{configs.website-description}}</textarea>
+        </div>
+        <div class="item-settings">
+            <h4>محتوا</h4>
+            <input type="text" name="postsperpage" placeholder="تعداد پست در صفحه" id="" value="{{configs.postsperpage}}">
+            <div class="settings-checkbox">
+                <input type="checkbox" name="user-can-comments" value="yes" {{#if (eq configs.user-can-comments "1")}}checked{{/if}} id="user-can-comments">
+                <label for="user-can-comments">کاربران میتوانند دیدگاه ثبت کنند</label>
+            </div>
+        </div>
+        <div class="item-settings">
+            <h4>عضویت</h4>
+            <div class="settings-checkbox">
+                <input type="checkbox" name="can-everyone-register" value="yes" {{#if (eq configs.can-everyone-register "1")}}checked{{/if}} id="can-everyone-register">
+                <label for="can-everyone-register">هر کسی میتواند ثبت نام کند</label>   
+            </div>
+        </div>
+
+
+        <button type="submit" class="button button-primary" style="display: block;width:35%;">
+            ذخیره
+        </button>
+    </div>
+</form>

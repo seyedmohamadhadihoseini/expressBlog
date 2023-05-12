@@ -9,8 +9,7 @@ exports.index = async (req, res) => {
     const posts = await postModel.findAll();
     const presentPosts = posts.map(post => {
         return Postpresent.present(post);
-    })
-
+    });
     res.render("admin/posts/", {
         layout: "admin", posts: presentPosts
     });
@@ -29,7 +28,6 @@ exports.newPost = async (req, res) => {
     delete req.session.createPostFormData;
 }
 exports.SaveNewPost = async (req, res) => {
-
     errMsg = postValidation.validate(req.body.title, req.body.slug, req.body.content);
     if (errMsg.length > 0) {
         req.session.createPostFormData = { ...req.body };
@@ -40,8 +38,6 @@ exports.SaveNewPost = async (req, res) => {
     post = new postEntites(req.body.author, req.body.title, req.body.slug, req.body.content, req.body.status, 1);
     await postModel.SaveNewPost(post);
     this.index(req, res);
-
-
 }
 exports.removePost = async (req, res) => {
     await postModel.removePost(req.query.postId);

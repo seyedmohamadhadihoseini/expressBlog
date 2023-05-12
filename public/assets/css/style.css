@@ -19363,3 +19363,28 @@ only screen and (max-width: 767px) {
   position: relative;
   display: inline-block;
 } */
+.all-settings{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px; /* optional */
+}
+.item-settings *{
+  margin: 20px;
+  margin-right: 0;
+}
+.item-settings input{
+  padding: 10px 30px;
+  text-align: right;
+}
+.item-settings textarea{
+  max-height: 200px;
+  min-height: 100px;
+  text-align: right;
+}
+.settings-checkbox *{
+  display: inline-block ;
+  margin-right: 0px;
+}
+#settings-form button{
+  width: auto;
+}

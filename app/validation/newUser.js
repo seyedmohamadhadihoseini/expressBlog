@@ -1,17 +1,13 @@
-exports.validate = (title, slug, content) => {
+const emailVaidator=require("email-validator");
+exports.validate = (fullname,email, password) => {
     let errorMessages = [];
 
-    if (title === "")
-        errorMessages.push("لطفا عنوان وارد کنید")
-    else if (title.length <= 3)
-        errorMessages.push("عنوان حداقل چهار حرفی باشد");
-    if (slug === "")
-        errorMessages.push("لطفا نامک وارد کنید")
-    else if (!isNaN(slug.substr(0, 1)))
-        errorMessages.push("اسلاک نمیتواند با عدد شروع شود")
-    if (content === "")
-        errorMessages.push("لطفا محتوا وارد کنید")
-
+    if (fullname === "")
+        errorMessages.push("اسم را کامل وارد کن")
+    else if (emailVaidator.validate(email)==false)
+        errorMessages.push("ایمیلت اشتباه وارد کردی");
+    else if (password.length<=4)
+        errorMessages.push("رمز عبور حداقل 5 کاراکتر داشته باشد")
 
     return errorMessages;
 }
