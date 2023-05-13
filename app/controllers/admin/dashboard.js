@@ -8,7 +8,7 @@ exports.index=async (req, res)=>{
         totalPost:await statistics.totalPosts()
 
     }
-    res.render("admin/dashboard/index", {
+    res.newRender("admin/dashboard/index", {
         layout: "admin",...data
     });
 };

@@ -3,6 +3,10 @@ const userStatus = [
     'نویسنده',
     'مدیر'
 ]
+const enUserRoles={
+    USER:0,WRITER:1,ADMIN:2
+};
+exports.userRoles=enUserRoles;
 exports.toNumber = (status) => {
     let i = 0;
     console.log("the status is ",status);

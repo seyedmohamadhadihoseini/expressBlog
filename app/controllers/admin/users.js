@@ -4,7 +4,7 @@ const userValidation=require("@validation/newUser");
 const userEntites=require("@entities/User");
 exports.index = async (req, res) => {
     const users = await userModel.findUsers();
-    res.render("admin/users/", {
+    res.newRender("admin/users/", {
         layout: "admin", users
     });
 };

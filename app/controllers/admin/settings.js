@@ -5,8 +5,8 @@ exports.index = async (req, res) => {
     configs.forEach(item => {
         represnetConfig[item.setting_name] = item.setting_value;
     });
-    console.log(represnetConfig)
-    res.render("admin/settings/", {
+    // console.log(represnetConfig)
+    res.newRender("admin/settings/", {
         layout: "admin", configs:represnetConfig
     });
 };

@@ -9,6 +9,7 @@ module.exports=(app)=>{
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     require("./session")(app);
+    require("@middlewares")(app);
     
     const liveReloadServer = livereload.createServer();
     liveReloadServer.server.once("connection", () => {
@@ -16,6 +17,7 @@ module.exports=(app)=>{
         liveReloadServer.refresh("/");
     }, 100);
     });
+    
     app.use(connectLiveReload());
     var hbs = exphbs.create({
         helpers: {
@@ -28,4 +30,5 @@ module.exports=(app)=>{
     app.set('view engine', 'handlebars');
     app.set('views', path.join(__dirname,"../views"));
     app.use('/static',express.static(path.join(__dirname,"../../public")));
+    
 }

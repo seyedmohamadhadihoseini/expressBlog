@@ -22,6 +22,7 @@
     "@database": "./database",
     "@validation": "app/validation",
     "@middlewares": "app/middlewares",
+    "@controllers":"app/controllers",
     "adminControllers": "app/controllers/admin"
   },
   "dependencies": {

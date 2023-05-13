@@ -22,3 +22,13 @@ exports.SaveNewuser=async(user)=>{
     const [result]=await db.query(`insert into users set ?`,[changedUser]);
     return true;
 }
+exports.findUserByEmail=async(email)=>{
+
+    const [result]=await db.query(`select * from users where email=?`,[email]);
+    if(result[0])
+    {
+        return result[0];
+    }
+    
+    return null;
+}

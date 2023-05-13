@@ -10,7 +10,7 @@ exports.index = async (req, res) => {
     const presentPosts = posts.map(post => {
         return Postpresent.present(post);
     });
-    res.render("admin/posts/", {
+    res.newRender("admin/posts/", {
         layout: "admin", posts: presentPosts
     });
 

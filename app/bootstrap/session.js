@@ -13,7 +13,7 @@ const options = {
 const sessionStore = new MySQLStore(options);
 module.exports=(app)=>{
     app.use(session({
-        secret: "this is my love Narges",
+        secret: "this is my love Zahra",
         resave: false,
         saveUninitialized: false,
         store:sessionStore,

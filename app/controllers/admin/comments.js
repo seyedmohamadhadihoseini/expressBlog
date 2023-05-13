@@ -5,7 +5,7 @@ const commentStatus = require("@models/comments/status");
 exports.index = async (req, res) => {
     let comments = await commentModel.findAll();
     comments =await commentPresenter.present(comments);
-    res.render("admin/comments", { layout: "admin", comments });
+    res.newRender("admin/comments", { layout: "admin", comments });
 };
 exports.remove = async (req, res) => {
     let commentId = req.params.commentId;
