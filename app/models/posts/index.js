@@ -1,13 +1,20 @@
 const db = require("@database/mysql");
 const postEntity = require("@entities/Post");
-exports.findAll = async () => {
+exports.findAll = async (offset=0,rowsCount=10) => {
     const [rows, fields] = await db.query(`
     select p.* , u.fullName from 
-    posts p join users u 
+    posts p left join users u 
     on p.author_id=u.id 
-    order by p.id;
+    order by p.id
+    limit ${offset},${rowsCount};
     `);
     return rows;
+}
+exports.count=async()=>{
+    const [result]=await db.query(`
+    select count(id) as postCounts from posts;
+    `);
+    return result[0].postCounts;
 }
 exports.findAuthorName = async (author_id) => {
     const [rows, fields] = await db.query(`SELECT fullName as authorName 
