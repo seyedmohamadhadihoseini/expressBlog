@@ -1,5 +1,5 @@
-<h2>تعریف کاربر جدید</h2>
-<form id="new_post_form" action="/admin/users/{{#if type}}{{type}}{{else}}new_user{{/if}}" method="post">
+<h2>{{#if title}}{{title}}{{else}}تعریف کاربر جدید{{/if}}</h2>
+<form id="new_post_form" action="/admin/users/{{#if type}}{{type}}{{else}}new_user{{/if}}"" method="post">
     {{#if HasError}}
     <ol>
         {{#each errors}}
@@ -10,11 +10,11 @@
     <input type="text"  name="fullname" id="title" required placeholder="اسم" value="{{formData.fullName}}">
     <input type="email"  name="email" id="email"   placeholder="ایمیل" value="{{formData.email}}">
     <input type="password"  name="password" id="slug"  required  placeholder="رمز عبور" value="{{formData.password}}">
-    
+    <input type="hidden" name="EuserId" value="{{userId}}">
 <hr>
     <select name="userRole" id="pet-select" style="display: block;">
         {{#each roles}}
-        <option value={{this}} {{#if (eq this.id)}}selected{{/if}}>{{this}}</option>
+        <option value={{this}} {{#if (isCurrentRole this)}}selected{{/if}}>{{this}}</option>
         {{/each}}
     </select>
     <hr>

@@ -7,6 +7,7 @@ const enUserRoles={
     USER:0,WRITER:1,ADMIN:2
 };
 exports.userRoles=enUserRoles;
+exports.userStatus=userStatus;
 exports.toNumber = (status) => {
     let i = 0;
     console.log("the status is ",status);

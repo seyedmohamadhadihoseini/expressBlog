@@ -32,3 +32,11 @@ exports.findUserByEmail=async(email)=>{
     
     return null;
 }
+
+exports.update=async(id,user)=>{
+    const hashedPassword=bcryptService.hash(user.password);
+    const changedUser={...user,password:hashedPassword};
+    const [result]=await db.query(`update users set ? where id=?`,[changedUser,id]);
+
+    return result;
+}

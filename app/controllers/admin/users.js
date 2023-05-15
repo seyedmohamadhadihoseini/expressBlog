@@ -1,11 +1,16 @@
 const userModel = require("@models/users");
 const userStatus = require("@models/users/status");
 const userValidation=require("@validation/newUser");
+const userRoles=require("@models/users/status");
+const userPersentation=require("@presentation/users");
 const userEntites=require("@entities/User");
+
+
 exports.index = async (req, res) => {
     const users = await userModel.findUsers();
+    const persentadUsers=userPersentation.present(users);
     res.newRender("admin/users/", {
-        layout: "admin", users
+        layout: "admin", users:persentadUsers
     });
 };
 exports.newuser = async (req, res) => {
@@ -14,7 +19,11 @@ exports.newuser = async (req, res) => {
     const kerrors = req.session.kerrors||{};
     let roles=['کاربری','نویسنده','مدیر'];
     res.render("admin/users/new_user", {
-        layout: "admin", HasError: kerrors.length > 0, errors:kerrors, formData,roles
+        layout: "admin", HasError: kerrors.length > 0, errors:kerrors, formData,roles,helpers:{
+            isCurrentRole:function(role,options){
+                return false;
+            }
+        }
     })
     delete req.session.kerrors;
     delete req.session.createuserFormData;
@@ -46,19 +55,33 @@ exports.edituser=async(req,res)=>{
         return;
     }
     let result= await userModel.findOne(userId);
-    const authors = await userModel.findUsers(['fullName', 'id']);
+    const roles=userRoles.userStatus;
+    const userRole=userRoles.userStatus[result.role];
+    console.log("userRole : ",userRole);
     res.render("admin/users/new_user", {
-        layout: "admin", authors,  selectedId: result.author_id,formData:result,type:"edit_user",
+        layout: "admin",roles,userRole, userId,formData:result,type:"edit_user",title:"ویرایش کاربر",
         helpers:{
             isuserAuthor:function(userId,options){
                 return userId===result.author_id;
+            },
+            isCurrentRole:function(role,options){
+                return role==userRole;
             }
         }
     });
     req.session.userId=userId;
 }
 exports.Updateuser=async(req,res)=>{
-    await userModel.update(req.session.userId, new userEntites(req.body.author, req.body.title,
-        req.body.slug, req.body.content, req.body.status,1));
+    const Euser=req.body;
+    // console.log(Euser);
+    
+    
+    // return res.redirect("/admin/users");
+    const reuslt= await userModel.update(Euser.EuserId,{
+        fullName:Euser.fullname,
+        email:Euser.email,
+        password:Euser.password,
+        role:userStatus.toNumber(Euser.userRole)
+    });
     res.redirect("/admin/users");
 };

@@ -5,7 +5,12 @@ module.exports = app => {
             options = { ...options, user: req.session.user };
             res.render(template,options);
         };
+        res.frontRender=(template,options)=>{
+            options = { ...options, layout:'front' };
+            res.render(template,options);
+        }
         next();
     });  
+
     
 };
