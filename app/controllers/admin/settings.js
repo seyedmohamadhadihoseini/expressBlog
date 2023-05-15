@@ -2,7 +2,7 @@ const settingModel = require("@models/settings");
 exports.index = async (req, res) => {
     const configs = await settingModel.findAll();
     const represnetConfig = {};
-    configs.forEach(item => {
+    configs.forEach(item => { 
         represnetConfig[item.setting_name] = item.setting_value;
     });
     // console.log(represnetConfig)

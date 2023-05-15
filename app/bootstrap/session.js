@@ -17,6 +17,7 @@ module.exports=(app)=>{
         resave: false,
         saveUninitialized: false,
         store:sessionStore,
+        unset:'destroy',
         cookie: { secure: false }
     }));
 
