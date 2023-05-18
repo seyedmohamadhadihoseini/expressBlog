@@ -1,23 +1,57 @@
-{{#each posts}}
-<div class="blog-post">
-    <a href="#"><img class="rounded mb-lg-5 mb-4" src="/static/assets/img/blog/b1.jpg" alt="card image" /></a>
-    <h3 class=""><a href="#">{{this.title}}</a></h3>
-    <div class="meta font-lora my-4">
-        <a href="#">{{this.fullName}}</a>
-        <span class="meta-separator"></span>
-        <a href="#">{{this.created_at_persian}}</a>
+<!--page title start-->
+<section class="section-gap section-top pb-0 bg-white text-center">
+    <!--<div class="hero-img bg-overlay" data-overlay="1" style="background-image: url(/static/assets/img/price-banner.jpg);"></div>-->
+    <div class="container">
+        <div class="row justify-content-md-center align-items-center">
+            <div class="col-md-7">
+                <!-- heading -->
+                <h2 class="">
+                    وبلاگ و مقاله
+                </h2>
+                <p class="lead text-muted">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                    طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                    طراحان گرافیک است.</p>
+            </div>
+            <div class="col-md-8">
+                <img src="/static/assets/img/blog/blog-banner.jpg" alt="">
+            </div>
+        </div>
     </div>
-    <p>
-        {{this.excerpt}}
-    </p>
-</div>
-{{/each}}
-<!--pagination-->
-<div class="pagination justify-content-center">
-    <a href="/?page={{pagination.previousPage}}" class="btn btn-dark" ><i class="fa fa-angle-left"></i></a>
-    <div class="h6 mt-2 mx-4">
-        {{pagination.currentPage}} از 
-        {{pagination.totalPagesCount}}
+</section>
+<!--page title end-->
+
+<!--blog start-->
+<section class="section-gap">
+    <div class="container">
+        <div class="row justify-content-between">
+            {{>slidebar}}
+            <div class="col-lg-8">
+                {{#each posts}}
+                <div class="blog-post">
+                    <a href=""><img class="rounded mb-lg-5 mb-4" src="/static/assets/img/blog/b1.jpg" alt="card image" /></a>
+                    <h3 class=""><a href="/p/{{this.slug}}">{{this.title}}</a></h3>
+                    <div class="meta font-lora my-4">
+                        <a href="#">{{this.fullName}}</a>
+                        <span class="meta-separator"></span>
+                        <a href="#">{{this.created_at_persian}}</a>
+                    </div>
+                    <p>
+                        {{this.excerpt}}
+                    </p>
+                </div>
+                {{/each}}
+                <!--pagination-->
+                <div class="pagination justify-content-center">
+                    <a href="/?page={{pagination.previousPage}}" class="btn btn-dark"><i class="fa fa-angle-left"></i></a>
+                    <div class="h6 mt-2 mx-4">
+                        {{pagination.currentPage}} از
+                        {{pagination.totalPagesCount}}
+                    </div>
+                    <a href="/?page={{pagination.nextPage}}" class="btn btn-dark"><i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="/?page={{pagination.nextPage}}" class="btn btn-dark"><i class="fa fa-angle-right"></i></a>
-</div>
+</section>
+<!--blog end-->
+

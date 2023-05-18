@@ -1,0 +1,56 @@
+<section class="section-gap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!--comments area start-->
+                <div class="comments">
+                    <h2 class="comments-title"> نظرات</h2>
+                    {{>list comments=comments}}
+                </div>
+                <!--comments area end-->
+
+                <!--comment form start-->
+                <div class="comment-respond">
+                    <h3 class="comment-reply-title mb-lg-5 mb-4">
+                        پیام بگذارید
+                    </h3>
+                    <form role="form" class="comment-form" action="/p/{{post.id}}/comment" method="post">
+                        {{#if (isGuest)}}
+                        <div class="row">
+                            <div class=" col-md-4">
+                                <div class="form-group">
+                                    <input type="text" name="user_name" class="form-control" placeholder="نام*"
+                                        required="">
+                                </div>
+                            </div>
+                            <div class=" col-md-4">
+                                <div class="form-group ">
+                                    <input type="email" name="user_email" class="form-control" placeholder="ایمیل*"
+                                        required="">
+                                </div>
+                            </div>
+                            <div class=" col-md-4">
+                                <div class="form-group ">
+                                    <input type="text" name="user_url" class="form-control" placeholder="وب سایت">
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                        <div class="form-group">
+                            <div class="controls">
+                                <textarea id="message" rows="5" name="comment" placeholder="نظر*" class="form-control"
+                                    required=""></textarea>
+                            </div>
+                        </div>
+                        <p class="text-muted">آدرس ایمیل شما منتشر نخواهد شد. فیلدهای مورد نیاز علامت گذاری شده اند *
+                        </p>
+                        <div class="text-center mt-md-5">
+                            <button type="submit" class="btn btn-theme">ارسال</button>
+                        </div>
+                    </form>
+                </div>
+                <!--comment form end-->
+            </div>
+        </div>
+    </div>
+</section>

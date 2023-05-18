@@ -1,0 +1,62 @@
+{{> header}}
+<div class="blog-post border-0 blog-single">
+
+</div>
+
+<!--blog start-->
+<section class="section-gap pb-0">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-lg-8">
+                <div class="blog-post border-0 blog-single">
+                    {{post.content}}
+                    <br><br>
+                    <div class="card p-5 bg-dark text-white border-0 mb-lg-5 mb-4">
+                        <blockquote class="text-center">
+                            <p class="h5 d-block mb-4">
+                                “لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ”
+                            </p>
+                            <span>— توماس جانسون, طراح</span>
+                        </blockquote>
+                    </div>
+
+                    <div class="owl-carousel owl-theme dot-style-1 nav-circle-solid-light nav-inside mb-lg-5 mb-4"
+                        data-items="[1,1]" data-margin="30" data-autoplay="true" data-loop="true" data-nav="true"
+                        data-dots="true">
+                        <div class="item">
+                            <a href="#" class="card border-0">
+                                <img class="card-img rounded" src="/static/assets/img/cards/11a.jpg" alt="card image" />
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="#" class="card border-0">
+                                <img class="card-img rounded" src="/static/assets/img/cards/3b.jpg" alt="card image" />
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="#" class="card border-0">
+                                <img class="card-img rounded" src="/static/assets/img/cards/3c.jpg" alt="card image" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <h6 class="mb-0">برچسب ها:
+                        <a href="#" class="badge badge-pill badge-dark">غذا</a>
+                        <a href="#" class="badge badge-pill badge-dark">غذا کودکان</a>
+                        <a href="#" class="badge badge-pill badge-dark">رستوران</a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+{{>author}}
+<hr>
+
+{{>single_comments comments=comments}}
+{{>lets_message}}
+<!--blog end-->
